@@ -167,7 +167,7 @@ const BlockchainVisualizer: React.FC = () => {
   }
 
   return (
-    <div className="p-8 bg-gray-50 rounded-xl">
+    <div className="p-4 sm:p-8 bg-gray-50 rounded-xl">
       <div className="mb-8">
         <h2 className="text-2xl font-bold mb-2">Blockchain Visualizer</h2>
         <p className="text-gray-600 mb-4">
@@ -179,9 +179,9 @@ const BlockchainVisualizer: React.FC = () => {
         </Button>
       </div>
 
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Left section - Blockchain Structure */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border-2 border-blue-100">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm border-2 border-blue-100">
           <h3 className="text-sm font-semibold mb-4 flex items-center gap-1">
             <Link className="w-4 h-4" />
             Blockchain Structure
@@ -189,13 +189,15 @@ const BlockchainVisualizer: React.FC = () => {
           <motion.div className="flex flex-col items-center gap-4" layout>
             {blocks.map((block, index) => (
               <React.Fragment key={block.number}>
-                <Block
-                  number={block.number}
-                  hash={block.hash}
-                  prevHash={block.prevHash}
-                  isNew={index === blocks.length - 1}
-                  highlight={block.number === highlightedBlock}
-                />
+                <div className="w-full sm:w-64">
+                  <Block
+                    number={block.number}
+                    hash={block.hash}
+                    prevHash={block.prevHash}
+                    isNew={index === blocks.length - 1}
+                    highlight={block.number === highlightedBlock}
+                  />
+                </div>
                 {index < blocks.length - 1 && (
                   <div className="rotate-90">
                     <Arrow />
@@ -207,12 +209,12 @@ const BlockchainVisualizer: React.FC = () => {
         </div>
 
         {/* Right section - Array Structure */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border-2 border-blue-100">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm border-2 border-blue-100">
           <h3 className="text-sm font-semibold mb-4 flex items-center gap-1">
             <Database className="w-4 h-4" />
             Block Array Structure
           </h3>
-          <div className="border-l-2 border-blue-100 pl-6 ml-4">
+          <div className="border-l-2 border-blue-100 pl-4 sm:pl-6 ml-2 sm:ml-4">
             <motion.div className="flex flex-col gap-4" layout>
               {blocks.map((block, index) => (
                 <ArrayBlock
